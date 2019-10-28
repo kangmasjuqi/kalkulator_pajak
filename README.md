@@ -1,14 +1,19 @@
 # kalkulator_pajak
 
 penghasilan kotor per bulan = A
-penghasilan bersih per bulan = B
-penghasilan bersih per tahun = B x 12 = C
 
-(PTKP) penghasilan tidak kena pajak = PTKP
+penghasilan bersih per bulan = B
+
+  penghasilan bersih per tahun = B x 12 = C
+
+
+**(PTKP) penghasilan tidak kena pajak = PTKP
+
 
 (PKP) penghasilan kena pajak = C - PTKP 
 
 (PT) pajak yang harus dibayarkan untuk 12 bulan = 5% x PKP
+
 (PB) pajak yang harus dibayarkan untuk 1 bulan = PT : 12
 
 
