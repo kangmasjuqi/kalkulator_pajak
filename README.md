@@ -4,10 +4,12 @@ penghasilan kotor per bulan = A
 
 penghasilan bersih per bulan = B
 
-  penghasilan bersih per tahun = B x 12 = C
+penghasilan bersih per tahun = B x 12 = C
 
 
-**(PTKP) penghasilan tidak kena pajak = PTKP
+-------------------------------------------
+(PTKP) penghasilan tidak kena pajak = PTKP
+-------------------------------------------
 
 
 (PKP) penghasilan kena pajak = C - PTKP 
