@@ -18,6 +18,6 @@ penghasilan bersih per tahun = B x 12 = C
 
 
 ref : 
-https://www.online-pajak.com/ptkp-2019
-https://www.pajakbro.com/2016/06/ptkp-2016-terbaru-pdf.html
-https://www.finansialku.com/wp-content/uploads/2018/05/Studi-Kasus-Cara-Menghitung-Pajak-Penghasilan-03-PPh-21-Finansialku.jpg
+- https://www.online-pajak.com/ptkp-2019
+- https://www.pajakbro.com/2016/06/ptkp-2016-terbaru-pdf.html
+- https://www.finansialku.com/wp-content/uploads/2018/05/Studi-Kasus-Cara-Menghitung-Pajak-Penghasilan-03-PPh-21-Finansialku.jpg
