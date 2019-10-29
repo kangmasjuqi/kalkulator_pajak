@@ -30,7 +30,16 @@ $array_percentage_pajak = array(
 );
 
 ?>
-
+<html>
+<head>
+	<title>Kalkulator Pajak (v.1.0)</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="kalkulator pajak (simplified)">
+	<meta name="keywords" content="kalkulator pajak, pajak, simplified">
+	<meta name="author" content="kangmasjuqi">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 <h1>Kalkulator Pajak (v.1.0)</h1>
 
 <!--
@@ -153,3 +162,5 @@ penghasilan bersih per tahun = B x 12 = C
 <br/>
 <hr/>
 <br/>Kode sumber : <a href="https://github.com/kangmasjuqi/kalkulator_pajak">https://github.com/kangmasjuqi/kalkulator_pajak</a>
+</body>
+</html>
