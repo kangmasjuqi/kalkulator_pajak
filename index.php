@@ -158,14 +158,19 @@ penghasilan bersih per tahun = B x 12 = C
 ?>
 
 <hr/>
-<br/>Referensi penghitungan:
-<br/>https://www.online-pajak.com/ptkp-2019
+<h3>Referensi penghitungan</h3>
+https://www.online-pajak.com/ptkp-2019
 <br/>https://www.online-pajak.com/tarif-pajak-pph-21
 <br/>https://www.pajakbro.com/2016/06/ptkp-2016-terbaru-pdf.html
 <br/>https://www.finansialku.com/wp-content/uploads/2018/05/Studi-Kasus-Cara-Menghitung-Pajak-Penghasilan-03-PPh-21-Finansialku.jpg
 <br/>
 <br/>
+
 <hr/>
-<br/>Kode sumber : <a href="https://github.com/kangmasjuqi/kalkulator_pajak">https://github.com/kangmasjuqi/kalkulator_pajak</a>
+<h3>Kode sumber</h3>
+<a href="https://github.com/kangmasjuqi/kalkulator_pajak">https://github.com/kangmasjuqi/kalkulator_pajak</a>
+<br/>
+<br/>
+
 </body>
 </html>
