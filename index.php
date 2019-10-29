@@ -5,29 +5,33 @@
 // wa 'alaa aalihi wasohbihi ajma'in
 // created by marjuqi, October 2019
 
-$monthly_bruto = $monthly_netto = $yearly_netto = $pkp = $pt = $pb = 0;
+	$monthly_bruto = $monthly_netto = $yearly_netto = $pkp = $pt = $pb = 0;
 
-$array_ptkp = array(
-	"tk0" => 54*1000*1000,
-	"tk1" => 58.5 *1000*1000,
-	"tk2" => 63*1000*1000,
-	"tk3" => 67.5 *1000*1000,
-	"k0" => 58.5 *1000*1000,
-	"k1" => 63*1000*1000,
-	"k2" => 67.5 *1000*1000,
-	"k3" => 72*1000*1000,
-	"ki0" => 108 *1000*1000,
-	"ki1" => 112.5 *1000*1000,
-	"ki2" => 117 *1000*1000,
-	"ki3" => 121.5 *1000*1000
-);
+	$array_ptkp = array(
+		"tk0" => 54*1000*1000,
+		"tk1" => 58.5 *1000*1000,
+		"tk2" => 63*1000*1000,
+		"tk3" => 67.5 *1000*1000,
+		"k0" => 58.5 *1000*1000,
+		"k1" => 63*1000*1000,
+		"k2" => 67.5 *1000*1000,
+		"k3" => 72*1000*1000,
+		"ki0" => 108 *1000*1000,
+		"ki1" => 112.5 *1000*1000,
+		"ki2" => 117 *1000*1000,
+		"ki3" => 121.5 *1000*1000
+	);
 
-$array_percentage_pajak = array(
-	"0.05" => array("min" => 0*1000*1000, "max" => 50*1000*1000),
-	"0.15" => array("min" => 50*1000*1000 + 1, "max" => 250*1000*1000),
-	"0.25" => array("min" => 250*1000*1000 + 1, "max" => 500*1000*1000),
-	"0.30" => array("min" => 500*1000*1000 + 1, "max" => 1*1000*1000*1000*1000*1000*1000)
-);
+	$array_percentage_pajak = array(
+		"0.05" => array("min" => 0*1000*1000, "max" => 50*1000*1000),
+		"0.15" => array("min" => 50*1000*1000 + 1, "max" => 250*1000*1000),
+		"0.25" => array("min" => 250*1000*1000 + 1, "max" => 500*1000*1000),
+		"0.30" => array("min" => 500*1000*1000 + 1, "max" => 1*1000*1000*1000*1000*1000*1000)
+	);
+
+	function nf($nominal){
+		return number_format($nominal,0,"",".");
+	}
 
 ?>
 <html>
@@ -38,6 +42,14 @@ $array_percentage_pajak = array(
 	<meta name="keywords" content="kalkulator pajak, pajak, simplified">
 	<meta name="author" content="kangmasjuqi">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		p.result{
+			color:dark;
+			padding:3px;
+			font-family:comic sans ms;
+			background-color:#fdfc76;
+		}
+	</style>
 </head>
 <body>
 <h1>Kalkulator Pajak (v.1.0)</h1>
@@ -91,20 +103,7 @@ penghasilan bersih per tahun = B x 12 = C
 
 <h3>Hasil penghitungan</h3>
 
-<style>
-	p.result{
-		color:dark;
-		padding:3px;
-		font-family:comic sans ms;
-		background-color:#fdfc76;
-	}
-</style>
-
 <?php
-	
-	function nf($nominal){
-		return number_format($nominal,0,"",".");
-	}
 	
 	if(isset($_POST['flag'])){
 
