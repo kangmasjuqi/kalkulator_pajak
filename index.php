@@ -2,7 +2,8 @@
 
 // bismillaahirrahmaanirrahiim
 // allahumma sholli 'alaa sayyidinaa muhamamd
-// created by marjuqi, October 219
+// wa 'alaa aalihi wasohbihi ajma'in
+// created by marjuqi, October 2019
 
 $monthly_bruto = $monthly_netto = $yearly_netto = $pkp = $pt = $pb = 0;
 
