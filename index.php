@@ -49,6 +49,12 @@
 			font-family:comic sans ms;
 			background-color:#fdfc76;
 		}
+		body {
+			margin-left:10px;
+		}
+		p {
+			margin-left:10px;
+		}
 	</style>
 </head>
 <body>
