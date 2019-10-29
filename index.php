@@ -113,14 +113,14 @@ penghasilan bersih per tahun = B x 12 = C
 		echo '<p class="result">C. Kode PTKP (berdasarkan status_menikah + jumlah_tanggungan): '.$kode_tpkp;
 
 		$ptkp = $array_ptkp[$kode_tpkp];
-		echo '<p class="result">D. Penghasilan tidak kena pajak (berdasarkan kode PTKP): '.nf($ptkp);
+		echo '<p class="result">D. Penghasilan Tidak Kena Pajak (berdasarkan kode PTKP): '.nf($ptkp);
 
 		$pkp = $yearly_netto - $ptkp;
-		echo '<p class="result">E. PKP - Penghasilan Kena Pajak (B dikurangi D) : '.nf($pkp);
+		echo '<p class="result">E. Penghasilan Kena Pajak (B dikurangi D) : '.nf($pkp);
 
 		$total_pajak = 0;
 
-		echo '<p class="result">F. Penghitungan besaran pajak berdasarkan PKP';
+		echo '<p class="result">F. Penghitungan besaran pajak (berdasarkan langkah E)';
 		$ii = 0;
 		foreach($array_percentage_pajak as $p => $range){
 			if($pkp <= 0)
