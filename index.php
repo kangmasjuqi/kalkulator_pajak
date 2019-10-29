@@ -55,6 +55,11 @@
 		p {
 			margin-left:10px;
 		}
+		span.final_result{
+			background-color:#333333;
+			color:white;
+			padding:3px 10px;
+		}
 	</style>
 </head>
 <body>
@@ -150,10 +155,10 @@ penghasilan bersih per tahun = B x 12 = C
 		echo '<p class="result">>> total pajak (F1..F'.$ii.'): '.nf($total_pajak);
 
 		$pt_terutang = $total_pajak;
-		echo '<p class="result">G. Besaran pajak tahunan: '.nf($pt_terutang);
+		echo '<p class="result">G. Besaran pajak tahunan: <span class="final_result">'.nf($pt_terutang).'</span>';
 
 		$pb_terutang = $pt_terutang / 12;
-		echo '<p class="result">H. (atau) Besaran pajak dalam bulanan (G / 12): '.nf($pb_terutang);
+		echo '<p class="result">H. (atau) Besaran pajak dalam bulanan (G / 12): <span class="final_result">'.nf($pb_terutang).'</span>';
 	}
 ?>
 
