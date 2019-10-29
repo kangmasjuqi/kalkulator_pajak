@@ -12,7 +12,7 @@ penghasilan bersih per tahun = B x 12 = C
 
 (PKP) penghasilan kena pajak = C - PTKP 
 
-(PT) pajak yang harus dibayarkan untuk 12 bulan = 5% x PKP
+(PT) pajak yang harus dibayarkan untuk 12 bulan = percentages_pajak x PKP
 
 (PB) pajak yang harus dibayarkan untuk 1 bulan = PT : 12
 
