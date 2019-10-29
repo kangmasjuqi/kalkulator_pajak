@@ -1,6 +1,6 @@
 # kalkulator_pajak
 
-App deployed : http://dasendria.com/kalkulatorpajak.php
+Live App deployed : http://dasendria.com/kalkulatorpajak.php
 
 penghasilan kotor per bulan = A
 
