@@ -5,62 +5,84 @@
 // wa 'alaa aalihi wasohbihi ajma'in
 // created by marjuqi, October 2019
 
-	$monthly_bruto = $monthly_netto = $yearly_netto = $pkp = $pt = $pb = 0;
+    $monthly_bruto = $monthly_netto = $yearly_netto = $pkp = $pt = $pb = 0;
 
-	$array_ptkp = array(
-		"tk0" => 54*1000*1000,
-		"tk1" => 58.5 *1000*1000,
-		"tk2" => 63*1000*1000,
-		"tk3" => 67.5 *1000*1000,
-		"k0" => 58.5 *1000*1000,
-		"k1" => 63*1000*1000,
-		"k2" => 67.5 *1000*1000,
-		"k3" => 72*1000*1000,
-		"ki0" => 108 *1000*1000,
-		"ki1" => 112.5 *1000*1000,
-		"ki2" => 117 *1000*1000,
-		"ki3" => 121.5 *1000*1000
-	);
+    $array_ptkp = array(
+        "tk0" => 54*1000*1000,
+        "tk1" => 58.5 *1000*1000,
+        "tk2" => 63*1000*1000,
+        "tk3" => 67.5 *1000*1000,
+        "k0" => 58.5 *1000*1000,
+        "k1" => 63*1000*1000,
+        "k2" => 67.5 *1000*1000,
+        "k3" => 72*1000*1000,
+        "ki0" => 108 *1000*1000,
+        "ki1" => 112.5 *1000*1000,
+        "ki2" => 117 *1000*1000,
+        "ki3" => 121.5 *1000*1000
+    );
 
-	$array_percentage_pajak = array(
-		"0.05" => array("min" => 0*1000*1000, "max" => 50*1000*1000),
-		"0.15" => array("min" => 50*1000*1000 + 1, "max" => 250*1000*1000),
-		"0.25" => array("min" => 250*1000*1000 + 1, "max" => 500*1000*1000),
-		"0.30" => array("min" => 500*1000*1000 + 1, "max" => 1*1000*1000*1000*1000*1000*1000)
-	);
+    $array_percentage_pajak = array(
+        "0.05" => array("min" => 0*1000*1000, "max" => 50*1000*1000),
+        "0.15" => array("min" => 50*1000*1000 + 1, "max" => 250*1000*1000),
+        "0.25" => array("min" => 250*1000*1000 + 1, "max" => 500*1000*1000),
+        "0.30" => array("min" => 500*1000*1000 + 1, "max" => 1*1000*1000*1000*1000*1000*1000)
+    );
 
-	function nf($nominal){
-		return number_format($nominal,0,"",".");
-	}
+    function nf($nominal){
+        return number_format($nominal,0,"",".");
+    }
+    
+    function writeLog($posted_data){
+        
+        // DON'T FORGET to set the permission of log.txt 
+        // as 644 OR -rw-rw-r--
+        
+        $array_data = array(
+            "posted_data" => $posted_data,
+            "meta_client" => array(
+                'REMOTE_ADDR' => $_SERVER['REMOTE_ADDR'],
+                'HTTP_REFERER' => $_SERVER['HTTP_REFERER'],
+                'HTTP_USER_AGENT' => $_SERVER['HTTP_USER_AGENT']
+            )
+        );
+        $header = "\n\n==== ".date("Y-m-d H:i:s").", IP ".$_SERVER['REMOTE_ADDR']." ===\n";
+        $string_data     = $header. json_encode($array_data);
+        $filename         = "log.txt";
+        
+        $myfile = fopen($filename, "a") or die("Unable to open file!");
+        fwrite($myfile, $string_data);
+        fclose($myfile);
+    }
 
 ?>
 <html>
 <head>
-	<title>Kalkulator Pajak (v.1.0)</title>
-	<meta charset="UTF-8">
-	<meta name="description" content="kalkulator pajak (simplified)">
-	<meta name="keywords" content="kalkulator pajak, pajak, simplified">
-	<meta name="author" content="kangmasjuqi">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style type="text/css">
-		p.result{
-			color:dark;
-			padding:3px;
-			font-family:comic sans ms;
-			background-color:#fdfc76;
-		}
-		body {
-			margin-left:10px;
-		}
-		p {
-			margin-left:10px;
-		}
-		span.final_result{
-			background-color:#333333;
-			color:white;
-			padding:3px 10px;
-		}
-	</style>
+    <title>Kalkulator Pajak (v.1.0)</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="kalkulator pajak (simplified)">
+    <meta name="keywords" content="kalkulator pajak, pajak, simplified">
+    <meta name="author" content="kangmasjuqi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        p.result{
+            color:dark;
+            padding:3px;
+            font-family:comic sans ms;
+            background-color:#fdfc76;
+        }
+        body {
+            margin-left:10px;
+        }
+        p {
+            margin-left:10px;
+        }
+        span.final_result{
+            background-color:#333333;
+            color:white;
+            padding:3px 10px;
+        }
+    </style>
 </head>
 <body>
 <h1>Kalkulator Pajak (v.1.0)</h1>
@@ -85,29 +107,29 @@ penghasilan bersih per tahun = B x 12 = C
 <h3>Data wajib pajak (simplified)</h3>
 
 <form method="post">
-	<!--penghasilan kotor bulanan : <input type="text" name="monthly_bruto"><br/>-->
-	<p>penghasilan bersih bulanan : <input type="text" name="monthly_netto"></p>
-	
-	<p>status menikah : 
-	<select name="status_menikah">
-		<option value="tk">lajang/cerai</option>
-		<option value="k">menikah</option>
-	</select></p>
+    <!--penghasilan kotor bulanan : <input type="text" name="monthly_bruto"><br/>-->
+    <p>penghasilan bersih bulanan : <input type="text" name="monthly_netto"></p>
+    
+    <p>status menikah : 
+    <select name="status_menikah">
+        <option value="tk">lajang/cerai</option>
+        <option value="k">menikah</option>
+    </select></p>
 
-	<p>jumlah tanggungan : 
-	<select name="jumlah_tanggungan">
-		<option value="0">0</option>
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-	</select></p>
+    <p>jumlah tanggungan : 
+    <select name="jumlah_tanggungan">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select></p>
 
-	<p>penghasilan istri digabung dalam perhitungan ? 
-	<input type="radio" name="status_penghasilan_istri" value="tidak" checked="checked"> tidak digabung
-	<input type="radio" name="status_penghasilan_istri" value="ya"> digabung </p>
+    <p>penghasilan istri digabung dalam perhitungan ? 
+    <input type="radio" name="status_penghasilan_istri" value="tidak" checked="checked"> tidak digabung
+    <input type="radio" name="status_penghasilan_istri" value="ya"> digabung </p>
 
-	<p><input type="submit" value="hitung"></p>
-	<input type="hidden" name="flag" value="1">
+    <p><input type="submit" value="hitung"></p>
+    <input type="hidden" name="flag" value="1">
 </form>
 
 <hr/>
@@ -115,51 +137,53 @@ penghasilan bersih per tahun = B x 12 = C
 <h3>Hasil penghitungan</h3>
 
 <?php
-	
-	if(isset($_POST['flag'])){
+    
+    if(isset($_POST['flag'])){
 
-		$monthly_netto = $_POST['monthly_netto'];
-		echo '<p class="result">A. Penghasilan bersih bulanan : '.nf($monthly_netto);
+        writeLog($_POST);
 
-		$yearly_netto = 12 * $_POST['monthly_netto'];
-		echo '<p class="result">B. Penghasilan bersih tahunan (A x 12) : '.nf($yearly_netto);
+        $monthly_netto = $_POST['monthly_netto'];
+        echo '<p class="result">A. Penghasilan bersih bulanan : '.nf($monthly_netto);
 
-		if($_POST['status_penghasilan_istri'] == 'ya')
-			$kode_tpkp = $_POST['status_menikah'].'i'.$_POST['jumlah_tanggungan'];
-		else 
-			$kode_tpkp = $_POST['status_menikah'].$_POST['jumlah_tanggungan'];
+        $yearly_netto = 12 * $_POST['monthly_netto'];
+        echo '<p class="result">B. Penghasilan bersih tahunan (A x 12) : '.nf($yearly_netto);
 
-		$ptkp = $array_ptkp[$kode_tpkp];
-		echo '<p class="result">C. Kode PTKP (berdasarkan status_menikah + jumlah_tanggungan): '.$kode_tpkp;
+        if($_POST['status_penghasilan_istri'] == 'ya')
+            $kode_tpkp = $_POST['status_menikah'].'i'.$_POST['jumlah_tanggungan'];
+        else 
+            $kode_tpkp = $_POST['status_menikah'].$_POST['jumlah_tanggungan'];
 
-		$ptkp = $array_ptkp[$kode_tpkp];
-		echo '<p class="result">D. Penghasilan Tidak Kena Pajak (berdasarkan kode PTKP): '.nf($ptkp);
+        $ptkp = $array_ptkp[$kode_tpkp];
+        echo '<p class="result">C. Kode PTKP (berdasarkan status_menikah + jumlah_tanggungan): '.$kode_tpkp;
 
-		$pkp = $yearly_netto - $ptkp;
-		echo '<p class="result">E. Penghasilan Kena Pajak (B dikurangi D) : '.nf($pkp);
+        $ptkp = $array_ptkp[$kode_tpkp];
+        echo '<p class="result">D. Penghasilan Tidak Kena Pajak (berdasarkan kode PTKP): '.nf($ptkp);
 
-		$total_pajak = 0;
+        $pkp = $yearly_netto - $ptkp;
+        echo '<p class="result">E. Penghasilan Kena Pajak (B dikurangi D) : '.nf($pkp);
 
-		echo '<p class="result">F. Penghitungan besaran pajak (berdasarkan langkah E)';
-		$ii = 0;
-		foreach($array_percentage_pajak as $p => $range){
-			if($pkp <= 0)
-				break;
-			$p = (float) $p;
-			$nominal = ($pkp < $range['max']) ? $pkp: $range['max'];
-			$pajak = $p * $nominal;
-			$total_pajak = $total_pajak + $pajak;
-			echo "<br/>==> ".++$ii.". ".$p." x ".nf($nominal)." : ".nf($pajak);
-			$pkp = $pkp - $range['max'];
-		}
-		echo '<p class="result">>> total pajak (F1..F'.$ii.'): '.nf($total_pajak);
+        $total_pajak = 0;
 
-		$pt_terutang = $total_pajak;
-		echo '<p class="result">G. Besaran pajak tahunan: <span class="final_result">'.nf($pt_terutang).'</span>';
+        echo '<p class="result">F. Penghitungan besaran pajak (berdasarkan langkah E)';
+        $ii = 0;
+        foreach($array_percentage_pajak as $p => $range){
+            if($pkp <= 0)
+                break;
+            $p = (float) $p;
+            $nominal = ($pkp < $range['max']) ? $pkp: $range['max'];
+            $pajak = $p * $nominal;
+            $total_pajak = $total_pajak + $pajak;
+            echo "<br/>==> ".++$ii.". ".$p." x ".nf($nominal)." : ".nf($pajak);
+            $pkp = $pkp - $range['max'];
+        }
+        echo '<p class="result">>> total pajak (F1..F'.$ii.'): '.nf($total_pajak);
 
-		$pb_terutang = $pt_terutang / 12;
-		echo '<p class="result">H. (atau) Besaran pajak dalam bulanan (G / 12): <span class="final_result">'.nf($pb_terutang).'</span>';
-	}
+        $pt_terutang = $total_pajak;
+        echo '<p class="result">G. Besaran pajak tahunan: <span class="final_result">'.nf($pt_terutang).'</span>';
+
+        $pb_terutang = $pt_terutang / 12;
+        echo '<p class="result">H. (atau) Besaran pajak dalam bulanan (G / 12): <span class="final_result">'.nf($pb_terutang).'</span>';
+    }
 ?>
 
 <hr/>
