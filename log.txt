@@ -1,0 +1,20 @@
+
+=======
+{"posted_data":{"monthly_netto":"14000000","status_menikah":"tk","jumlah_tanggungan":"0","status_penghasilan_istri":"tidak","flag":"1"},"meta_client":{"REMOTE_ADDR":"140.213.132.135","HTTP_REFERER":"http:\/\/dasendria.com\/kalkulatorpajak\/","HTTP_USER_AGENT":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/77.0.3865.120 Safari\/537.36"}}
+==== 2019-10-30 21:47:27 ===
+{"posted_data":{"monthly_netto":"14000000","status_menikah":"tk","jumlah_tanggungan":"0","status_penghasilan_istri":"tidak","flag":"1"},"meta_client":{"REMOTE_ADDR":"140.213.132.135","HTTP_REFERER":"http:\/\/dasendria.com\/kalkulatorpajak\/","HTTP_USER_AGENT":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/77.0.3865.120 Safari\/537.36"}}
+
+==== 2019-10-30 21:48:06 ===
+{"posted_data":{"monthly_netto":"14000000","status_menikah":"tk","jumlah_tanggungan":"1","status_penghasilan_istri":"tidak","flag":"1"},"meta_client":{"REMOTE_ADDR":"140.213.132.135","HTTP_REFERER":"http:\/\/dasendria.com\/kalkulatorpajak\/","HTTP_USER_AGENT":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/77.0.3865.120 Safari\/537.36"}}
+
+==== 2019-10-30 21:48:13 ===
+{"posted_data":{"monthly_netto":"11000000","status_menikah":"k","jumlah_tanggungan":"2","status_penghasilan_istri":"ya","flag":"1"},"meta_client":{"REMOTE_ADDR":"140.213.132.135","HTTP_REFERER":"http:\/\/dasendria.com\/kalkulatorpajak\/","HTTP_USER_AGENT":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/77.0.3865.120 Safari\/537.36"}}
+
+==== 2019-10-30 21:48:22 ===
+{"posted_data":{"monthly_netto":"14000000","status_menikah":"k","jumlah_tanggungan":"3","status_penghasilan_istri":"tidak","flag":"1"},"meta_client":{"REMOTE_ADDR":"140.213.132.135","HTTP_REFERER":"http:\/\/dasendria.com\/kalkulatorpajak\/","HTTP_USER_AGENT":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/77.0.3865.120 Safari\/537.36"}}
+
+==== 2019-10-30 21:50:08, IP 140.213.132.135 ===
+{"posted_data":{"monthly_netto":"14000000","status_menikah":"tk","jumlah_tanggungan":"3","status_penghasilan_istri":"tidak","flag":"1"},"meta_client":{"REMOTE_ADDR":"140.213.132.135","HTTP_REFERER":"http:\/\/dasendria.com\/kalkulatorpajak\/","HTTP_USER_AGENT":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/77.0.3865.120 Safari\/537.36"}}
+
+==== 2019-10-30 21:50:12, IP 140.213.132.135 ===
+{"posted_data":{"monthly_netto":"14000000","status_menikah":"k","jumlah_tanggungan":"3","status_penghasilan_istri":"tidak","flag":"1"},"meta_client":{"REMOTE_ADDR":"140.213.132.135","HTTP_REFERER":"http:\/\/dasendria.com\/kalkulatorpajak\/","HTTP_USER_AGENT":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/77.0.3865.120 Safari\/537.36"}}
