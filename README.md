@@ -1,6 +1,6 @@
 # kalkulator_pajak
 
-Live App deployed : http://dasendria.com/kalkulatorpajak.php
+Live App deployed : http://dasendria.com/kalkulatorpajak/
 
 ref : 
 - https://www.online-pajak.com/ptkp-2019
