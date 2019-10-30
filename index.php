@@ -140,7 +140,6 @@ penghasilan bersih per tahun = B x 12 = C
     
     if(isset($_POST['flag'])){
 
-        writeLog($_POST);
 
         $monthly_netto = $_POST['monthly_netto'];
         echo '<p class="result">A. Penghasilan bersih bulanan : '.nf($monthly_netto);
@@ -183,6 +182,8 @@ penghasilan bersih per tahun = B x 12 = C
 
         $pb_terutang = $pt_terutang / 12;
         echo '<p class="result">H. (atau) Besaran pajak dalam bulanan (G / 12): <span class="final_result">'.nf($pb_terutang).'</span>';
+
+        writeLog($_POST);
     }
 ?>
 
