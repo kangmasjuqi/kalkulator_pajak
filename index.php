@@ -82,6 +82,11 @@
             color:white;
             padding:3px 10px;
         }
+        div.disclaimer{
+            background-color:#ffcccc;
+            padding:3px 3px 3px 20px;
+            font-style:italic;
+        }
     </style>
 </head>
 <body>
@@ -134,73 +139,87 @@ penghasilan bersih per tahun = B x 12 = C
 
 <hr/>
 
-<h3>Hasil penghitungan</h3>
+<h3>Hasil perhitungan</h3>
 
 <?php
     
     if(isset($_POST['flag'])){
 
-
-        $monthly_netto = $_POST['monthly_netto'];
-        echo '<p class="result">A. Penghasilan bersih bulanan : '.nf($monthly_netto);
-
-        $yearly_netto = 12 * $_POST['monthly_netto'];
-        echo '<p class="result">B. Penghasilan bersih tahunan (A x 12) : '.nf($yearly_netto);
-
-        if($_POST['status_penghasilan_istri'] == 'ya')
-            $kode_tpkp = $_POST['status_menikah'].'i'.$_POST['jumlah_tanggungan'];
-        else 
-            $kode_tpkp = $_POST['status_menikah'].$_POST['jumlah_tanggungan'];
-
-        $ptkp = $array_ptkp[$kode_tpkp];
-        echo '<p class="result">C. Kode PTKP (berdasarkan status_menikah + jumlah_tanggungan): '.$kode_tpkp;
-
-        $ptkp = $array_ptkp[$kode_tpkp];
-        echo '<p class="result">D. Penghasilan Tidak Kena Pajak (berdasarkan kode PTKP): '.nf($ptkp);
-
-        $pkp = $yearly_netto - $ptkp;
-        echo '<p class="result">E. Penghasilan Kena Pajak (B dikurangi D) : '.nf($pkp);
-
-        $total_pajak = 0;
-
-        echo '<p class="result">F. Penghitungan besaran pajak (berdasarkan langkah E)';
-        $ii = 0;
-        foreach($array_percentage_pajak as $p => $range){
-            if($pkp <= 0)
-                break;
-            $p = (float) $p;
-            $nominal = ($pkp < $range['max']) ? $pkp: $range['max'];
-            $pajak = $p * $nominal;
-            $total_pajak = $total_pajak + $pajak;
-            echo "<br/>==> ".++$ii.". ".$p." x ".nf($nominal)." : ".nf($pajak);
-            $pkp = $pkp - $range['max'];
+        $_POST['monthly_netto'] = (int) $_POST['monthly_netto'];
+        
+        if(is_numeric($_POST['monthly_netto']) and $_POST['monthly_netto'] <=0){
+            echo '<p class="result">Mohon masukkan penghasilan bersih bulanan yang valid</p>';
+            
         }
-        echo '<p class="result">>> total pajak (F1..F'.$ii.'): '.nf($total_pajak);
+        else {
 
-        $pt_terutang = $total_pajak;
-        echo '<p class="result">G. Besaran pajak tahunan: <span class="final_result">'.nf($pt_terutang).'</span>';
+            $monthly_netto = $_POST['monthly_netto'];
+            echo '<p class="result">A. Penghasilan bersih bulanan : '.nf($monthly_netto);
 
-        $pb_terutang = $pt_terutang / 12;
-        echo '<p class="result">H. (atau) Besaran pajak dalam bulanan (G / 12): <span class="final_result">'.nf($pb_terutang).'</span>';
+            $yearly_netto = 12 * $_POST['monthly_netto'];
+            echo '<p class="result">B. Penghasilan bersih tahunan (A x 12) : '.nf($yearly_netto);
 
-        writeLog($_POST);
+            if($_POST['status_penghasilan_istri'] == 'ya')
+                $kode_tpkp = $_POST['status_menikah'].'i'.$_POST['jumlah_tanggungan'];
+            else 
+                $kode_tpkp = $_POST['status_menikah'].$_POST['jumlah_tanggungan'];
+
+            $ptkp = $array_ptkp[$kode_tpkp];
+            echo '<p class="result">C. Kode PTKP (berdasarkan status_menikah + jumlah_tanggungan): '.$kode_tpkp;
+
+            $ptkp = $array_ptkp[$kode_tpkp];
+            echo '<p class="result">D. Penghasilan Tidak Kena Pajak (berdasarkan kode PTKP): '.nf($ptkp);
+
+            $pkp = $yearly_netto - $ptkp;
+            echo '<p class="result">E. Penghasilan Kena Pajak (B dikurangi D) : '.nf($pkp);
+
+            $total_pajak = 0;
+
+            echo '<p class="result">F. Perhitungan besaran pajak (berdasarkan langkah E)';
+            $ii = 0;
+            foreach($array_percentage_pajak as $p => $range){
+                if($pkp <= 0)
+                    break;
+                $p = (float) $p;
+                $nominal = ($pkp < $range['max']) ? $pkp: $range['max'];
+                $pajak = $p * $nominal;
+                $total_pajak = $total_pajak + $pajak;
+                echo "<br/>==> ".++$ii.". ".$p." x ".nf($nominal)." : ".nf($pajak);
+                $pkp = $pkp - $range['max'];
+            }
+            echo '<p class="result">>> total pajak (F1..F'.$ii.'): '.nf($total_pajak);
+
+            $pt_terutang = $total_pajak;
+            echo '<p class="result">G. Besaran pajak tahunan: <span class="final_result">'.nf($pt_terutang).'</span>';
+
+            $pb_terutang = $pt_terutang / 12;
+            echo '<p class="result">H. (atau) Besaran pajak dalam bulanan (G / 12): <span class="final_result">'.nf($pb_terutang).'</span>';
+
+            echo '
+            <div class="disclaimer">
+                <p><b>Disclaimer</b> : 
+                    Kalkulator pajak ini tidak merepresentasikan perhitungan resmi milik pemerintah 
+                    serta tidak dapat digunakan sebagai acuan resmi/baku dalam pelaporan pajak anda.
+                </p>
+            </div>';
+
+            writeLog($_POST);
+        
+        }
     }
 ?>
 
 <hr/>
-<h3>Referensi penghitungan</h3>
-https://www.online-pajak.com/ptkp-2019
-<br/>https://www.online-pajak.com/tarif-pajak-pph-21
-<br/>https://www.pajakbro.com/2016/06/ptkp-2016-terbaru-pdf.html
-<br/>https://www.finansialku.com/wp-content/uploads/2018/05/Studi-Kasus-Cara-Menghitung-Pajak-Penghasilan-03-PPh-21-Finansialku.jpg
-<br/>
-<br/>
+<h4>Referensi perhitungan</h4>
+<p>
+https://www.online-pajak.com/ptkp-2019<br/>
+https://www.online-pajak.com/tarif-pajak-pph-21<br/>
+https://www.pajakbro.com/2016/06/ptkp-2016-terbaru-pdf.html<br/>https://www.finansialku.com/wp-content/uploads/2018/05/Studi-Kasus-Cara-Menghitung-Pajak-Penghasilan-03-PPh-21-Finansialku.jpg
+</p>
 
-<hr/>
-<h3>Kode sumber</h3>
-<a href="https://github.com/kangmasjuqi/kalkulator_pajak">https://github.com/kangmasjuqi/kalkulator_pajak</a>
-<br/>
-<br/>
+<h4>Kode sumber</h4>
+<p><a href="https://github.com/kangmasjuqi/kalkulator_pajak">https://github.com/kangmasjuqi/kalkulator_pajak</a></p>
+
 
 </body>
 </html>
