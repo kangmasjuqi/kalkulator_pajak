@@ -154,10 +154,10 @@ penghasilan bersih per tahun = B x 12 = C
         else {
 
             $monthly_netto = $_POST['monthly_netto'];
-            echo '<p class="result">A. Penghasilan bersih bulanan : '.nf($monthly_netto);
+            echo '<p class="result">A. Penghasilan bersih bulanan = '.nf($monthly_netto).'</p>';
 
             $yearly_netto = 12 * $_POST['monthly_netto'];
-            echo '<p class="result">B. Penghasilan bersih tahunan (A x 12) : '.nf($yearly_netto);
+            echo '<p class="result">B. Penghasilan bersih tahunan (A x 12) = '.nf($yearly_netto).'</p>';
 
             if($_POST['status_penghasilan_istri'] == 'ya')
                 $kode_tpkp = $_POST['status_menikah'].'i'.$_POST['jumlah_tanggungan'];
@@ -165,35 +165,40 @@ penghasilan bersih per tahun = B x 12 = C
                 $kode_tpkp = $_POST['status_menikah'].$_POST['jumlah_tanggungan'];
 
             $ptkp = $array_ptkp[$kode_tpkp];
-            echo '<p class="result">C. Kode PTKP (berdasarkan status_menikah + jumlah_tanggungan): '.$kode_tpkp;
+            echo '<p class="result">C. Kode PTKP (berdasarkan status_menikah + jumlah_tanggungan) = '.$kode_tpkp.'</p>';
 
             $ptkp = $array_ptkp[$kode_tpkp];
-            echo '<p class="result">D. Penghasilan Tidak Kena Pajak (berdasarkan kode PTKP): '.nf($ptkp);
+            echo '<p class="result">D. Penghasilan Tidak Kena Pajak (berdasarkan kode PTKP) = '.nf($ptkp).'</p>';
 
             $pkp = $yearly_netto - $ptkp;
-            echo '<p class="result">E. Penghasilan Kena Pajak (B dikurangi D) : '.nf($pkp);
+            echo '<p class="result">E. Penghasilan Kena Pajak (B dikurangi D) = '.nf($pkp).'</p>';
 
             $total_pajak = 0;
 
-            echo '<p class="result">F. Perhitungan besaran pajak (berdasarkan langkah E)';
+            echo '<p class="result">F. Perhitungan besaran pajak (berdasarkan langkah E)</p>';
             $ii = 0;
-            foreach($array_percentage_pajak as $p => $range){
-                if($pkp <= 0)
-                    break;
-                $p = (float) $p;
-                $nominal = ($pkp < $range['max']) ? $pkp: $range['max'];
-                $pajak = $p * $nominal;
-                $total_pajak = $total_pajak + $pajak;
-                echo "<br/>==> ".++$ii.". ".$p." x ".nf($nominal)." : ".nf($pajak);
-                $pkp = $pkp - $range['max'];
+            if($pkp > 0){
+                echo '<p class="result">';
+                foreach($array_percentage_pajak as $p => $range){
+                    if($pkp <= 0)
+                        break;
+                    $p = (float) $p;
+                    $nominal = ($pkp < $range['max']) ? $pkp: $range['max'];
+                    $pajak = (float)$p * (float)$nominal;
+                    $total_pajak = $total_pajak + $pajak;
+                    echo "==> ".++$ii.". ".$p." x ".nf($nominal)." = ".nf($pajak).'<br/>';
+                    $pkp = $pkp - $range['max'];
+                }
+                echo '<br/>>> total pajak (F1..F'.$ii.') = '.nf($total_pajak).'</p>';
             }
-            echo '<p class="result">>> total pajak (F1..F'.$ii.'): '.nf($total_pajak);
+            else 
+                echo '<p class="result">- skipped -</p>';
 
             $pt_terutang = $total_pajak;
-            echo '<p class="result">G. Besaran pajak tahunan: <span class="final_result">'.nf($pt_terutang).'</span>';
+            echo '<p class="result">G. Besaran pajak tahunan = <span class="final_result">'.nf($pt_terutang).'</span></p>';
 
-            $pb_terutang = $pt_terutang / 12;
-            echo '<p class="result">H. (atau) Besaran pajak dalam bulanan (G / 12): <span class="final_result">'.nf($pb_terutang).'</span>';
+            $pb_terutang = (float) ($pt_terutang / 12);
+            echo '<p class="result">H. (atau) Besaran pajak dalam bulanan (G / 12) = <span class="final_result">'.nf($pb_terutang).'</span></p>';
 
             echo '
             <div class="disclaimer">
